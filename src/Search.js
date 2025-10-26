@@ -10,19 +10,22 @@ export default function Search() {
   function showDetails(response) {
     setLoaded(true);
     setWeather({
-      temperature: response.data.main.temp,
+      name: response.data.city,
+      temperature: response.data.temperature.current,
       wind: response.data.wind.speed,
-      humidity: response.data.main.humidity,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      description: response.data.weather[0].description,
+      humidity: response.data.temperature.humidity,
+      icon: response.data.condition.icon_url,
+      description: response.data.condition.description,
+      date: "Sunday, 26th October",
+      time: response.data.time,
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    let key = `894e4351564af1e154dfd159576448c5`;
+    const key = `a2ab500f41eaff40b9aat33a8a92f8ao`;
     let unit = `metric`;
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=${unit}`;
+    let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=${unit}`;
     axios.get(url).then(showDetails);
   }
 
@@ -55,16 +58,20 @@ export default function Search() {
     return (
       <div className="Search">
         {form}
-        <h1>City</h1>
+        <h1>{weather.name}</h1>
         <ul>
-          <li>Day, time</li>
-          <li>Description: {weather.description}</li>
+          <li>
+            {weather.date}, {weather.time}
+          </li>
+          <li className="text-capitalize">
+            Description: {weather.description}
+          </li>
         </ul>
         <div className="row mt-3">
           <div className="col-6">
             <div className="clearfix">
               <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                src={weather.icon}
                 alt={weather.description}
                 className="float-left"
               />
@@ -79,7 +86,6 @@ export default function Search() {
           <div className="col-6">
             {" "}
             <ul>
-              <li>Precipitation: 15%</li>
               <li>Humidity: {weather.humidity}%</li>
               <li>Wind: {weather.wind}km/h</li>
             </ul>
