@@ -6,7 +6,7 @@ export default function App() {
     <div className="App">
       <h1>Weather Search</h1>
       <Search />
-      <p>
+      <footer>
         Coded by Emma Hunter on{" "}
         <a
           href="https://github.com/emma-hunter-code/weather-react"
@@ -24,7 +24,7 @@ export default function App() {
           Netlify
         </a>
         .
-      </p>
+      </footer>
     </div>
   );
 }
