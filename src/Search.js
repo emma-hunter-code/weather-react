@@ -38,11 +38,12 @@ export default function Search() {
             type="search"
             placeholder="Enter a city.."
             className="form-control"
+            autoFocus="on"
             onChange={updateCity}
           />
         </div>
         <div className="col-3">
-          <button type="Submit" className="btn btn-primary">
+          <button type="Submit" className="btn btn-primary w-100">
             Search
           </button>
         </div>
@@ -59,15 +60,26 @@ export default function Search() {
           <li>Day, time</li>
           <li>Description: {weather.description}</li>
         </ul>
-        <div className="row">
+        <div className="row mt-3">
           <div className="col-6">
-            <img src={weather.icon} alt={weather.description} />
-            <p>Description: {weather.description}</p>
+            <div className="clearfix">
+              <img
+                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                alt={weather.description}
+                className="float-left"
+              />
+              <div className="float-left">
+                <span className="temperature">
+                  {Math.round(weather.temperature)}
+                </span>
+                <span className="unit">°C</span>
+              </div>
+            </div>
           </div>
           <div className="col-6">
             {" "}
             <ul>
-              <li>Temperature: {Math.round(weather.temperature)}°C</li>
+              <li>Precipitation: 15%</li>
               <li>Humidity: {weather.humidity}%</li>
               <li>Wind: {weather.wind}km/h</li>
             </ul>
