@@ -5,7 +5,6 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Weather Search</h1>
         <Search />
         <footer>
           Coded by Emma Hunter on{" "}
