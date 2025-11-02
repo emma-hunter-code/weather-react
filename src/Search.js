@@ -56,7 +56,7 @@ export default function Search() {
 
   if (loaded) {
     return (
-      <div>
+      <div className="weather-wrap">
         {form}
         <WeatherInfo data={weather} />
       </div>
