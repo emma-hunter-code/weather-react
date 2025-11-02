@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Search.css";
+import FormattedDate from "./FormattedDate";
 
 export default function Search() {
   const [city, setCity] = useState("");
@@ -16,8 +17,7 @@ export default function Search() {
       humidity: response.data.temperature.humidity,
       icon: response.data.condition.icon_url,
       description: response.data.condition.description,
-      date: "Sunday, 26th October",
-      time: response.data.time,
+      date: new Date(response.data.time * 1000),
     });
   }
 
@@ -61,7 +61,7 @@ export default function Search() {
         <h1>{weather.name}</h1>
         <ul>
           <li>
-            {weather.date}, {weather.time}
+            <FormattedDate date={weather.date} />
           </li>
           <li className="text-capitalize">
             Description: {weather.description}
