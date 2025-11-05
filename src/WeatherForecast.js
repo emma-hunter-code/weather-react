@@ -18,6 +18,14 @@ export default function WeatherForecast(props) {
     setLoaded(true);
   }
 
+  function load() {
+    let city = props.data.name;
+    let apiKey = "a2ab500f41eaff40b9aat33a8a92f8ao";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+    axios.get(apiUrl).then(handleResponse);
+    return null;
+  }
+
   if (loaded) {
     return (
       <div className="WeatherForecast">
@@ -37,10 +45,6 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    let city = props.data.name;
-    let apiKey = "a2ab500f41eaff40b9aat33a8a92f8ao";
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
-    axios.get(apiUrl).then(handleResponse);
-    return null;
+    load();
   }
 }
